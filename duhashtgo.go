@@ -144,8 +144,8 @@ func (s *Session) Query(hashes []string) ([]string, error) {
 		for result_pos, result_val := range response {
 			switch result_val {
 			case PROTO_QUERY_FALSE:
-			case PROTO_QUERY_TRUE:
 				result = append(result, hashes[window_start + result_pos])
+			case PROTO_QUERY_TRUE:
 			default:
 				return nil, errors.New(ERROR_INVALID_RESPONSE)
 			}
