@@ -6,7 +6,7 @@ Plese see https://github.com/s4vvi/duhashtsrv for server setup & https://github.
 
 Add:
 ```
-go get github.com/s4vvi/duhashtgo@506375f
+go get github.com/s4vvi/duhashtgo@ad8c0fb
 ```
 
 Example:
