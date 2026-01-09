@@ -89,6 +89,38 @@ func (c *Session) SetRate(rate uint16) {
 }
 
 //
+// Execute a raw command & handle error.
+// Why? Useful for more custom logic.
+//
+func (s *Session) RawCommand(
+	command byte,
+	args []byte,
+	resp_size int,
+) ([]byte, error) {
+	query := []byte{PROTO_VERSION, command}
+	query = append(query, args...)
+
+	_, err := s.conn.Write(query)
+	if err != nil {
+		return nil, err
+	}
+
+	err = s.ReadResponseStatus()
+	if err != nil {
+		return nil, err
+	}
+
+	response := make([]byte, resp_size)
+
+	_, err = s.conn.Read(response)
+	if err != nil {
+		return nil, err
+	}
+
+	return response, nil 
+}
+
+//
 // Send a query request to the server.
 // Returns a slice of hashes that were not found.
 //
