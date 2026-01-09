@@ -53,8 +53,8 @@ type Client struct {
 //
 // Instantiate a new client.
 //
-func New(ip string, port uint16) *Client {
-	return &Client {
+func New(ip string, port uint16) Client {
+	return Client {
 		address: fmt.Sprintf("%s:%d", ip, port),
 	}
 }
